@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS `0_addfields_cust`;
+DROP TABLE IF EXISTS `0_addfields_branchcust`;
+DROP TABLE IF EXISTS `0_addfields_item`;
+DROP TABLE IF EXISTS `0_addfields_supp`;
+DROP TABLE IF EXISTS `0_addfields_doc_type`;
+DROP TABLE IF EXISTS `0_addfields_cust_class`;
+DROP TABLE IF EXISTS `0_addfields_city`;
+DROP TABLE IF EXISTS `0_addfields_departments`;
+DROP TABLE IF EXISTS `0_addfields_country`;
+DROP TABLE IF EXISTS `0_addfields_sectors`;
