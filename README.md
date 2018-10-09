@@ -8,5 +8,3 @@ Requirements
 ------------
 
 - FrontAccounting 2.4.x (http://frontaccounting.com/)
-=======
-# FrontAccounting additional_fields
