@@ -77,8 +77,8 @@ function print_stock_check()
 	$category = 0;
 	$cat = get_category_name($category);
 
-	$cols = array(0, 120, 440, 580, 650, 720, 790, 930, 980, 1030, 1100, 1170, 1210, 1250, 1290);
-
+	$cols = array(0, 80, 220, 260, 300, 340, 440, 560, 680, 800, 860, 980, 1100, 1220, 1340);
+					//1	   2    3    4    5    6    7    8    9   10   11    12    13    14
 	$headers = array(_('Stock ID'), _('Description'), _('UOM'), _('Active?'),
 		 _('Bin number'), _('Primary supplier'), _('Primary suppliers Part number'), _('Alternative part number'), 
 		 _('Manufacturers part number'), _('Stocked Since'), _('Custom Field One'), _('Custom Field Two'), 
