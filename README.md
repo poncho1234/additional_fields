@@ -7,4 +7,4 @@ Adds additional fields to customers/suppliers & items in FrontAccounting
 Requirements
 ------------
 
-- FrontAccounting 2.4.x (http://frontaccounting.com/)
+- [FrontAccounting 2.4.x](http://frontaccounting.com/)
