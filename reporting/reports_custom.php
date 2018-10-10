@@ -21,3 +21,5 @@ $reports->addReport(RC_CUSTOMER, "_customer_details_complete_excel", _('Customer
 	array(	_('<div class=warn_msg><b>Excel download only</b></div><br>Comments') => 'TEXTBOX'));
 $reports->addReport(RC_SUPPLIER, "_supplier_details_complete_excel", _('Supplier Additional Information Listing'),
 	array(	_('<div class=warn_msg><b>Excel download only</b></div><br>Comments') => 'TEXTBOX'));
+$reports->addReport(RC_INVENTORY, "_item_details_complete_excel", _('Item Additional Information Listing'),
+	array(	_('<div class=warn_msg><b>Excel download only</b></div><br>Comments') => 'TEXTBOX'));
