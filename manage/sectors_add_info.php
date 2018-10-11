@@ -85,7 +85,7 @@ $result = get_sectorss(check_value('show_inactive'));
 start_form();
 start_table(TABLESTYLE, "width='30%'");
 
-$th = array(_("Sector"), _("Codigo"), "", "");
+$th = array(_("Sector"), _("Sector Code"), "", "");
 inactive_control_column($th);
 
 table_header($th);
@@ -125,8 +125,8 @@ if ($selected_id != -1)
 	hidden("selected_id", $selected_id);
 } 
 
-text_row_ex(_("Sectors:"), 'description', 30); 
-text_row_ex(_("Codigo:"), 'codigo', 5);
+text_row_ex(_("Sector:"), 'description', 30); 
+text_row_ex(_("Sector Code:"), 'codigo', 5);
 
 end_table(1);
 

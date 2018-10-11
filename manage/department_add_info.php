@@ -87,7 +87,7 @@ $result = get_departmentss(check_value('show_inactive'));
 start_form();
 start_table(TABLESTYLE, "width='30%'");
 
-$th = array(_("Departments"), _("Codigo"), "", "");
+$th = array(_("Departments"), _("Department Code"), "", "");
 inactive_control_column($th);
 
 table_header($th);
@@ -128,7 +128,7 @@ if ($selected_id != -1)
 } 
 
 text_row_ex(_("Department:"), 'description', 30); 
-text_row_ex(_("codigo:"), 'codigo', 5);
+text_row_ex(_("Department Code:"), 'codigo', 5);
 
 end_table(1);
 

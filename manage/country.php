@@ -15,7 +15,7 @@ include($path_to_root . "/includes/session.inc");
 
 include_once($path_to_root . "/modules/additional_fields/includes/db/add_customers_info_db.inc");
 
-page(_($help_context = "Manage Paíseses"));
+page(_($help_context = "Manage Countries"));
 
 include($path_to_root . "/includes/ui.inc");
 
@@ -29,7 +29,7 @@ if ($Mode=='ADD_ITEM' || $Mode=='UPDATE_ITEM')
 	if (strlen($_POST['description']) == 0) 
 	{
 		$input_error = 1;
-		display_error(_("Países name cannot be empty."));
+		display_error(_("Country name cannot be empty."));
 		set_focus('description');
 	}
 
@@ -38,12 +38,12 @@ if ($Mode=='ADD_ITEM' || $Mode=='UPDATE_ITEM')
     	if ($selected_id != -1) 
     	{
     		update_country($selected_id, $_POST['description'], $_POST['codigo']);
-			$note = _('Selected Países has been updated');
+			$note = _('Selected Country has been updated');
     	} 
     	else 
     	{
     		add_country($_POST['description']);
-			$note = _('New Países has been added');
+			$note = _('New Country has been added');
     	}
     
 		display_notification($note);    	
@@ -59,13 +59,13 @@ if ($Mode == 'Delete')
 	if (key_in_foreign_table($selected_id, 'cust_branch', 'area'))
 	{
 		$cancel_delete = 1;
-		display_error(_("Cannot delete this Países because customer branches have been created using this Países."));
+		display_error(_("Cannot delete this Country because customer branches have been created using this Country."));
 	} 
 	if ($cancel_delete == 0) 
 	{
 		delete_country($selected_id);
 
-		display_notification(_('Selected Países has been deleted'));
+		display_notification(_('Selected Country has been deleted'));
 	}
 	$Mode = 'RESET';
 } 
@@ -85,7 +85,7 @@ $result = get_countrys(check_value('show_inactive'));
 start_form();
 start_table(TABLESTYLE, "width='30%'");
 
-$th = array(_("Países"), _("Codigo"), "", "");
+$th = array(_("Country"), _("Country Code"), "", "");
 inactive_control_column($th);
 
 table_header($th);
@@ -125,8 +125,8 @@ if ($selected_id != -1)
 	hidden("selected_id", $selected_id);
 } 
 
-text_row_ex(_("Países:"), 'description', 30); 
-text_row_ex(_("codigo:"), 'codigo', 5);
+text_row_ex(_("Country:"), 'description', 30); 
+text_row_ex(_("Country Code:"), 'codigo', 5);
 
 end_table(1);
 

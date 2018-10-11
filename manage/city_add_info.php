@@ -15,7 +15,7 @@ include($path_to_root . "/includes/session.inc");
 
 include_once($path_to_root . "/modules/additional_fields/includes/db/add_customers_info_db.inc");
 
-page(_($help_context = "Manage Municipios"));
+page(_($help_context = "Manage Cities"));
 
 include($path_to_root . "/includes/ui.inc");
 
@@ -29,7 +29,7 @@ if ($Mode=='ADD_ITEM' || $Mode=='UPDATE_ITEM')
 	if (strlen($_POST['description']) == 0) 
 	{
 		$input_error = 1;
-		display_error(_("Municipios name cannot be empty."));
+		display_error(_("City name cannot be empty."));
 		set_focus('description');
 	}
 
@@ -38,12 +38,12 @@ if ($Mode=='ADD_ITEM' || $Mode=='UPDATE_ITEM')
     	if ($selected_id != -1) 
     	{
     		update_city($selected_id, $_POST['description'], $_POST['codigo']);
-			$note = _('Selected Municipios has been updated');
+			$note = _('Selected City has been updated');
     	} 
     	else 
     	{
     		add_city($_POST['description']);
-			$note = _('New Municipios has been added');
+			$note = _('New City has been added');
     	}
     
 		display_notification($note);    	
@@ -61,13 +61,13 @@ if ($Mode == 'Delete')
 	if (key_in_foreign_table($selected_id, 'cust_branch', 'area'))///NEEDS CHANGING?
 	{
 		$cancel_delete = 1;
-		display_error(_("Cannot delete this Municipios because customer branches have been created using this Municipios."));
+		display_error(_("Cannot delete this City because customer branches have been created using this City."));
 	} 
 	if ($cancel_delete == 0) 
 	{
 		delete_city($selected_id);
 
-		display_notification(_('Selected Municipios has been deleted'));
+		display_notification(_('Selected City has been deleted'));
 	} //end if Delete area
 	$Mode = 'RESET';
 } 
@@ -87,7 +87,7 @@ $result = get_citys(check_value('show_inactive'));
 start_form();
 start_table(TABLESTYLE, "width='30%'");
 
-$th = array(_("Municipios"), _("Codigo"), "", "");
+$th = array(_("City"), _("City Code"), "", "");
 inactive_control_column($th);
 
 table_header($th);
@@ -127,8 +127,8 @@ if ($selected_id != -1)
 	hidden("selected_id", $selected_id);
 } 
 
-text_row_ex(_("Municipios:"), 'description', 30); 
-text_row_ex(_("codigo:"), 'codigo', 5);
+text_row_ex(_("City:"), 'description', 30); 
+text_row_ex(_("City Code:"), 'codigo', 5);
 
 end_table(1);
 
