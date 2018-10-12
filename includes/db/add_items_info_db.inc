@@ -14,6 +14,7 @@ function update_item_additional_info($item_stock_id, $item_bin_num, $item_prime_
 	$item_start_date, $item_custom_one, $item_custom_two, $item_custom_three, 
 	$item_custom_four)
 {
+	$date = date2sql($item_start_date);
 	$sql = "UPDATE ".TB_PREF."addfields_item SET 
 		item_stock_id=".db_escape($item_stock_id).",
 		item_bin_num=".db_escape($item_bin_num).",
@@ -21,7 +22,7 @@ function update_item_additional_info($item_stock_id, $item_bin_num, $item_prime_
 		item_prime_supp_no=".db_escape($item_prime_supp_no).",
 		item_alternative_part_no=".db_escape($item_alternative_part_no).",
 		item_manu_part_no=".db_escape($item_manu_part_no).",
-		item_start_date=".db_escape($item_start_date).",
+		item_start_date='$date',
 		item_custom_one=".db_escape($item_custom_one).",
 		item_custom_two=".db_escape($item_custom_two).",
 		item_custom_three=".db_escape($item_custom_three).",
@@ -38,14 +39,14 @@ function add_item_additional_info($item_stock_id, $item_bin_num, $item_prime_sup
 	$item_start_date, $item_custom_one, $item_custom_two, $item_custom_three, 
 	$item_custom_four)
 {
+	$date = date2sql($item_start_date);
 	$sql = "INSERT INTO ".TB_PREF."addfields_item (item_stock_id, item_bin_num, 
 		item_prime_supp, item_prime_supp_no, item_alternative_part_no, 
 		item_manu_part_no, item_start_date, item_custom_one, item_custom_two, 
 		item_custom_three, item_custom_four)
 		VALUES (".db_escape($item_stock_id).", ".db_escape($item_bin_num).", ".db_escape($item_prime_supp).",
 		".db_escape($item_prime_supp_no).", ".db_escape($item_alternative_part_no).", "
-		.db_escape($item_manu_part_no).", ".db_escape($item_start_date)
-		.", ".db_escape($item_custom_one).",".db_escape($item_custom_two)
+		.db_escape($item_manu_part_no).",'$date', ".db_escape($item_custom_one).",".db_escape($item_custom_two)
 		.", ".db_escape($item_custom_three).", "
 		.db_escape($item_custom_four).")";
 
