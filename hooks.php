@@ -13,7 +13,8 @@
     ================================================================
     
 ***********************************************************************/
-define ('SS_ADD', 253<<8);
+
+define('SS_ADDFLD',  142<<8); // transactions
 
 class add_fields_sales_app extends application {
     
@@ -129,13 +130,6 @@ class add_fields_supp_app extends application {
         $this->add_module(_("Maintenance"));
         $this->add_lapp_function(2, _("&Suppliers"),
             "/modules/additional_fields/manage/add_suppliers.php?", 'SA_SUPPLIER', MENU_ENTRY);
-        
-        $this->add_rapp_function(2, _('Manage Document Types'), $path_to_root.'/modules/additional_fields/manage/document_types.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
-        $this->add_rapp_function(2, _('Manage Beneficiary Classes'), $path_to_root.'/modules/additional_fields/manage/customer_class.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
-        $this->add_rapp_function(2, _('Manage Countries'), $path_to_root.'/modules/additional_fields/manage/country.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
-        $this->add_rapp_function(2, _('Manage Departments'), $path_to_root.'/modules/additional_fields/manage/department_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
-        $this->add_rapp_function(2, _('Manage Cities'), $path_to_root.'/modules/additional_fields/manage/city_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
-        $this->add_rapp_function(2, _('Manage Sectors'), $path_to_root.'/modules/additional_fields/manage/sectors_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
 		$this->add_extensions();
     }
 }
@@ -188,26 +182,45 @@ class add_fields_item_app extends application {
     }
 }
 
+class additional_fields_app extends application {
+    
+    function __construct() {
+        global $path_to_root;
+        
+        parent::__construct('AddFields', _($this->help_context = 'Additional Fields'));
+        
+        $this->add_module(_('Maintenance'));
+        $this->add_lapp_function(2, _('Manage Document Types'), $path_to_root.'/modules/additional_fields/manage/document_types.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_lapp_function(2, _('Manage Beneficiary Classes'), $path_to_root.'/modules/additional_fields/manage/customer_class.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_rapp_function(2, _('Manage Countries'), '/modules/additional_fields/manage/country.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_rapp_function(2, _('Manage Departments'), $path_to_root.'/modules/additional_fields/manage/department_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_rapp_function(2, _('Manage Cities'), $path_to_root.'/modules/additional_fields/manage/city_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_rapp_function(2, _('Manage Sectors'), $path_to_root.'/modules/additional_fields/manage/sectors_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_extensions();
+    }
+}
+
 class hooks_additional_fields extends hooks {
     function __construct() {
  		$this->module_name = 'add_fields_sales';
         $this->module_name = 'add_fields_supp';
         $this->module_name = 'add_fields_item';
+        $this->module_name = 'additional_fields';
  	}
     
     function install_tabs($app) {
         $app->add_application(new add_fields_sales_app);
         $app->add_application(new add_fields_supp_app);
         $app->add_application(new add_fields_item_app);
+        $app->add_application(new additional_fields_app);
     }
     
-    function install_access() {
-        $security_sections[SS_ADD] =  _('Additional Fields');
-        $security_areas['SA_XFLD'] = array(SS_ADD|1, _('AddFields entry'));
-        $security_areas['SA_AFSETUP'] = array(SS_ADD|2, _('AddFields setup'));
+    function install_access() {$security_sections[SS_ADDFLD_C] =  _("Additional Fields Configuration");
+        $security_sections[SS_ADDFLD] =  _("Additional Transactions");
+        $security_areas['SA_XFLD'] = array(SS_ADDFLD|1, _("AddFields entry"));
         return array($security_areas, $security_sections);
     }
-    
+
     function activate_extension($company, $check_only=true) {
         global $db_connections;
         
