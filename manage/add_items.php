@@ -317,6 +317,7 @@ if (isset($_POST['delete']) && strlen($_POST['delete']) > 1)
 
 		$stock_id = $_POST['NewStockID'];
 		delete_item($stock_id);
+		delete_item_additional_info($stock_id);
 		$filename = company_path().'/images/'.item_img_name($stock_id).".jpg";
 		if (file_exists($filename))
 			unlink($filename);
