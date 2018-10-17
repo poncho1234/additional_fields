@@ -215,8 +215,7 @@ class hooks_additional_fields extends hooks {
         $app->add_application(new additional_fields_app);
     }
     
-    function install_access() {$security_sections[SS_ADDFLD_C] =  _("Additional Fields Configuration");
-        $security_sections[SS_ADDFLD] =  _("Additional Transactions");
+    function install_access() {$security_sections[SS_ADDFLD] =  _("Additional Fields");
         $security_areas['SA_XFLD'] = array(SS_ADDFLD|1, _("AddFields entry"));
         return array($security_areas, $security_sections);
     }
