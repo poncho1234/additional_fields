@@ -24,7 +24,7 @@ function add_supplier_additional_info($supp_supplier_id, $supp_city, $supp_depar
 		.db_escape($supp_postcode) . ", " 
 		.db_escape($supp_doc_type) . ", "
 		.db_escape($supp_valid_digit) . ", "
-		.db_escape($supp_start_date) . ", "
+		.db_escape($date) . ", "
 		.db_escape($supp_sector) . ", "
 		.db_escape($supp_class) . ", "
 		.db_escape($supp_custom_one) . ", "
@@ -66,55 +66,6 @@ function delete_supplier_additional_info($supplier_id)
 	db_query($sql,"check failed");
 }
 
-// function get_supplier_detailsxxx($supplier_id, $to=null, $all=true)
-// {
-
-// 	if ($to == null)
-// 		$todate = date("Y-m-d");
-// 	else
-// 		$todate = date2sql($to);
-// 	$past1 = get_company_pref('past_due_days');
-// 	$past2 = 2 * $past1;
-// 	// removed - supp_trans.alloc from all summations
-
-// 	if ($all)
-//     	$value = "(trans.ov_amount + trans.ov_gst + trans.ov_discount)";
-//     else	
-//     	$value = "IF (trans.type=".ST_SUPPINVOICE." OR trans.type=".ST_BANKDEPOSIT."
-//   	OR (trans.type=".ST_JOURNAL." AND (trans.ov_amount + trans.ov_gst + trans.ov_discount)>0), 1, -1)*
-//     		ABS(trans.ov_amount + trans.ov_gst + trans.ov_discount) - trans.alloc)";
-
-// 	$due = "IF (trans.type=".ST_SUPPINVOICE." OR trans.type=".ST_SUPPCREDIT.",trans.due_date,trans.tran_date)";
-//     $sql = "SELECT supp.supp_name, supp.curr_code, ".TB_PREF."payment_terms.terms,
-
-// 		Sum(IFNULL($value,0)) AS Balance,
-
-// 		Sum(IF ((TO_DAYS('$todate') - TO_DAYS($due)) > 0,$value,0)) AS Due,
-// 		Sum(IF ((TO_DAYS('$todate') - TO_DAYS($due)) > $past1,$value,0)) AS Overdue1,
-// 		Sum(IF ((TO_DAYS('$todate') - TO_DAYS($due)) > $past2,$value,0)) AS Overdue2,
-// 		supp.credit_limit - Sum(IFNULL(IF(trans.type=".ST_SUPPCREDIT.", -1, 1) 
-// 			* (ov_amount + ov_gst + ov_discount),0)) as cur_credit,
-// 		supp.tax_group_id
-
-// 		FROM ".TB_PREF."suppliers supp
-// 			 LEFT JOIN ".TB_PREF."supp_trans trans ON supp.supplier_id = trans.supplier_id AND trans.tran_date <= '$todate',
-// 			 ".TB_PREF."payment_terms
-
-// 		WHERE
-// 			 supp.payment_terms = ".TB_PREF."payment_terms.terms_indicator
-// 			 AND supp.supplier_id = $supplier_id ";
-// 	if (!$all)
-// 		$sql .= "AND ABS(trans.ov_amount + trans.ov_gst + trans.ov_discount) - trans.alloc > ".FLOAT_COMP_DELTA." ";  
-// 	$sql .= "GROUP BY
-// 			  supp.supp_name,
-// 			  ".TB_PREF."payment_terms.terms,
-// 			  ".TB_PREF."payment_terms.days_before_due,
-// 			  ".TB_PREF."payment_terms.day_in_following_month";
-//     $result = db_query($sql,"The customer details could not be retrieved");
-//     $supp = db_fetch($result);
-
-//     return $supp;
-// }
 
 function get_supplier_additional_info($supplier_id)
 {

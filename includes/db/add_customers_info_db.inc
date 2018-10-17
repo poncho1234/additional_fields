@@ -25,7 +25,7 @@ function add_customer_additional_info($cust_debtor_no, $cust_city, $cust_departm
 		.db_escape($cust_postcode) . ", " 
 		.db_escape($cust_doc_type) . ", "
 		.db_escape($cust_valid_digit) . ", "
-		.db_escape($cust_start_date) . ", "
+		.db_escape($date) . ", "
 		.db_escape($cust_sector) . ", "
 		.db_escape($cust_class) . ", "
 		.db_escape($cust_custom_one) . ", "
