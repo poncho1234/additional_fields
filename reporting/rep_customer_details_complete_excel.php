@@ -110,20 +110,22 @@ function print_customer_details_listing()
 	$orientation = 'L';
     $dec = 0;
 
-	$cols = array(0, 120, 440, 580, 650, 720, 790, 930, 980, 1030, 1100, 1170, 1210, 1250, 1290, 1330, 1390, 1430, 1470, 1530, 1590, 1630, 1645, 1660, 1680, 1700);//max 1700
-			//    1  2	  3		4	5	 6		7	8	9	  10	11	 12		13	 14		15	 16		17	 18		19	 20		21	 22		23	 24		25	 26
-	$headers = array(_('Customer Name'), _('Address'),	_('Full Name'),
+	$cols = array(0, 120, 240, 340, 410, 480, 550, 690, 740, 790, 860, 930, 970, 1010, 1050, 1090, 1150, 1190, 1230, 1290, 1350, 1390, 1405, 1420, 1440, 1460, 1520, 1580, 1640, 1700);//max 1700
+			//    1  2	  3	   4	5	 6	  7	   8	9	 10	  11   12   13	 14	   15	 16	   17	 18	   19	 20	   21	 22	   23	 24	   25	 26    27    28    29    30
+	$headers = array(_('Customer Name'), _('Address'),	_('Name'),
 			_('NIT/Cedula'), _('Document Type'), _('Customer Type'), _('Sector')
 			, _('Customer Since'), _('Credit Limit'), _('Credit Status')
 			, _('Payment Terms'), _('Discount'), _('PYMT Discount'), _('Currency Code')
 			, _('Sales Area'), _('Salesman'), _('Sales Group'), _('Active?')
 			, _('Dimension 1'), _('Dimension 2'), _('Notes'), _('Phone')
-			, _('2nd Phone'), _('Fax'), _('E-mail'));
+			, _('2nd Phone'), _('Fax'), _('E-mail'), _('Custom Field One')
+			, _('Custom Field Two'), _('Custom Field Three'), _('Custom Field Four'));
 
 	$aligns = array('left', 'left', 'left', 'left', 'left', 'left', 'left', 
 					'left', 'left', 'left', 'left', 'left', 'left', 'left', 
 					'left', 'left', 'left', 'left', 'left', 'left', 'left', 
-					'left', 'left', 'left', 'left', 'left');
+					'left', 'left', 'left', 'left', 'left', 'left', 'left',
+					'left', 'left');
 
     $params =   array( 	0 => $comments);
 
@@ -160,8 +162,7 @@ function print_customer_details_listing()
 			$rep->TextCol(1, 2, $spaced_address . ", " . $city . ", " . $department . ", " . $country
 				 . ", " . $myrow['cust_postcode']);
 
-			$rep->TextCol(2, 3, $myrow['cust_custom_one'] . " " .  $myrow['cust_custom_two'] 
-				. " " .  $myrow['cust_custom_three'] . " " .  $myrow['cust_custom_four']);
+			$rep->TextCol(2, 3, $myrow['name']);
 			$rep->TextCol(3, 4,	$myrow['tax_id'] . "-" . $myrow['cust_valid_digit']);
 			$cust_doc_type = get_document_type_name($myrow['cust_doc_type']);
 			$rep->TextCol(4, 5, $cust_doc_type);
@@ -210,7 +211,11 @@ function print_customer_details_listing()
 			$rep->TextCol(23, 24,	$crm[0]['fax']);
 			$rep->TextCol(24, 25,	$crm[0]['email']);
 			}
-			
+			$rep->TextCol(25, 26,	$myrow['cust_custom_one']);
+			$rep->TextCol(26, 27,	$myrow['cust_custom_two']);
+			$rep->TextCol(27, 28,	$myrow['cust_custom_three']);
+			$rep->TextCol(28, 29,	$myrow['cust_custom_four']);
+
 			if ($newrow != 0 && $newrow < $rep->row)
 				$rep->row = $newrow;
 			$rep->NewLine();

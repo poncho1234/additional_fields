@@ -97,19 +97,21 @@ function print_supplier_details_listing()
 	$orientation = 'L';
     $dec = 0;
 
-	$cols = array(0, 120, 440, 580, 650, 720, 790, 930, 980, 1030, 1170, 1210, 1250, 1290, 1330, 1390, 1430, 1470, 1530, 1590);//max 1700
-			//    1  2	  3		4	5	 6		7	8	9	  10	11	 12	   13	 14		15	 16		17	 18		19	 20		
-	$headers = array(_('Supplier Name'), _('Address'),	_('Full Name'),
+	$cols = array(0, 120, 240, 340, 410, 480, 550, 690, 740, 790, 930, 970, 1010, 1050, 1090, 1150, 1190, 1230, 1290, 1350, 1430, 1510, 1590, 1670);//max 1700
+			//    1  2	  3	   4	5	 6	  7	   8	9	 10	  11   12	13	  14	15	  16	17	  18	19	  20    21    22    23    24		
+	$headers = array(_('Supplier Name'), _('Address'),	_('Name'),
 			_('NIT/Cedula'), _('Document Type'), _('Supplier Type'), _('Sector')
 			, _('Supplier Since'), _('Credit Limit')
 			, _('Payment Terms'), _('Currency Code')
 			, _('Active?')
 			, _('Dimension 1'), _('Dimension 2'), _('Notes'), _('Phone')
-			, _('2nd Phone'), _('Fax'), _('E-mail'));
+			, _('2nd Phone'), _('Fax'), _('E-mail'), _('Custom Field One')
+			, _('Custom Field Two'), _('Custom Field Three'), _('Custom Field Four'));
 
 	$aligns = array('left', 'left', 'left', 'left', 'left', 'left', 'left', 
 					'left', 'left', 'left', 'left', 'left', 'left', 'left', 
-					'left', 'left', 'left', 'left', 'left', 'left', 'left');
+					'left', 'left', 'left', 'left', 'left', 'left', 'left',
+					'left', 'left', 'left', 'left');
 
     $params =   array( 	0 => $comments);
 
@@ -144,8 +146,7 @@ function print_supplier_details_listing()
 			$rep->TextCol(1, 2, $spaced_address . ", " . $city . ", " . $department . ", " . $country
 				 . ", " . $myrow['supp_postcode']);
 
-			$rep->TextCol(2, 3, $myrow['supp_custom_one'] . " " .  $myrow['supp_custom_two'] 
-				. " " .  $myrow['supp_custom_three'] . " " .  $myrow['supp_custom_four']);
+			$rep->TextCol(2, 3, $myrow['supp_name']);
 			$rep->TextCol(3, 4,	$myrow['gst_no'] . "-" . $myrow['supp_valid_digit']);
 			$supp_doc_type = get_document_type_name($myrow['supp_doc_type']);
 			$rep->TextCol(4, 5, $supp_doc_type);
@@ -183,7 +184,10 @@ function print_supplier_details_listing()
 			$rep->TextCol(17, 18,	$contacts[0]['fax']);
 			$rep->TextCol(18, 19,	$contacts[0]['email']);
 			}
-
+			$rep->TextCol(19, 20,	$myrow['supp_custom_one']);
+			$rep->TextCol(20, 21,	$myrow['supp_custom_two']);
+			$rep->TextCol(21, 22,	$myrow['supp_custom_three']);
+			$rep->TextCol(22, 23,	$myrow['supp_custom_four']);
 			if ($newrow != 0 && $newrow < $rep->row)
 				$rep->row = $newrow;
 			$rep->NewLine();
