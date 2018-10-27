@@ -57,7 +57,7 @@ function delete_item_additional_info($stock_id)
 {
 	$sql="DELETE FROM ".TB_PREF."addfields_item WHERE stock_id=".db_escape($stock_id);
 	db_query($sql, "could not delete stock item additonal info");
-
+}
 
 
 function get_item_additional_info($stock_id)
