@@ -31,6 +31,7 @@ include_once($path_to_root . "/includes/ui/contacts_view.inc");
 include_once($path_to_root . "/modules/additional_fields/includes/db/add_customers_info_db.inc");
 include_once($path_to_root . "/modules/additional_fields/includes/ui/additional_cust_info_ui.inc");
 include_once($path_to_root . "/sales/includes/db/customers_db.inc");
+
 //END ADDED
 if (isset($_GET['debtor_no'])) 
 {
@@ -448,11 +449,12 @@ tabbed_content_start('tabs', array(
 			break;
 		case 'transactions':
 			$_GET['customer_id'] = $selected_id;
-			include_once($path_to_root."/sales/inquiry/customer_inquiry.php");
+			include_once($path_to_root . "/modules/additional_fields/inquiry/customer_inquiry.php");
 			break;
 		case 'orders':
 			$_GET['customer_id'] = $selected_id;
-			include_once($path_to_root."/sales/inquiry/sales_orders_view.php");
+			include_once($path_to_root . "/modules/additional_fields/inquiry/sales_orders_view.php");
+			// include_once($path_to_root."/sales/inquiry/sales_orders_view.php");
 			break;
 	};
 br();

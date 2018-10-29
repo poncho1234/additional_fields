@@ -408,11 +408,11 @@ tabbed_content_start('tabs', array(
 			break;
 		case 'transactions':
 			$_GET['supplier_id'] = $supplier_id;
-			include_once($path_to_root."/purchasing/inquiry/supplier_inquiry.php");
+			include_once($path_to_root."/modules/additional_fields/inquiry/supplier_inquiry.php");
 			break;
 		case 'orders':
 			$_GET['supplier_id'] = $supplier_id;
-			include_once($path_to_root."/purchasing/inquiry/po_search_completed.php");
+			include_once($path_to_root."/modules/additional_fields/inquiry/po_search_completed.php");
 			break;
 	};
 br();

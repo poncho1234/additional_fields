@@ -677,17 +677,17 @@ tabbed_content_start('tabs', $tabs);
 		case 'sales_pricing':
 			$_GET['stock_id'] = $stock_id;
 			$_GET['page_level'] = 1;
-			include_once($path_to_root."/inventory/prices.php");
+			include_once($path_to_root."/modules/additional_fields/inventory/prices.php");
 			break;
 		case 'purchase_pricing':
 			$_GET['stock_id'] = $stock_id;
 			$_GET['page_level'] = 1;
-			include_once($path_to_root."/inventory/purchasing_data.php");
+			include_once($path_to_root."/modules/additional_fields/inventory/purchasing_data.php");
 			break;
 		case 'standard_cost':
 			$_GET['stock_id'] = $stock_id;
 			$_GET['page_level'] = 1;
-			include_once($path_to_root."/inventory/cost_update.php");
+			include_once($path_to_root."/modules/additional_fields/inventory/cost_update.php");
 			break;
 		case 'reorder_level':
 			if (!is_inventory_item($stock_id))
@@ -696,15 +696,15 @@ tabbed_content_start('tabs', $tabs);
 			}	
 			$_GET['page_level'] = 1;
 			$_GET['stock_id'] = $stock_id;
-			include_once($path_to_root."/inventory/reorder_level.php");
+			include_once($path_to_root."/modules/additional_fields/inventory/reorder_level.php");
 			break;
 		case 'movement':
 			$_GET['stock_id'] = $stock_id;
-			include_once($path_to_root."/inventory/inquiry/stock_movements.php");
+			include_once($path_to_root."/modules/additional_fields/inventory/inquiry/stock_movements.php");
 			break;
 		case 'status':
 			$_GET['stock_id'] = $stock_id;
-			include_once($path_to_root."/inventory/inquiry/stock_status.php");
+			include_once($path_to_root."/modules/additional_fields/inventory/inquiry/stock_status.php");
 			break;
 	};
 
