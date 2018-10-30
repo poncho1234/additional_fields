@@ -25,10 +25,9 @@ include_once($path_to_root . "/includes/ui.inc");
 include_once($path_to_root . "/includes/ui/contacts_view.inc");
 
 //ADDED
-include_once($path_to_root . "/modules/additional_fields/includes/db/add_suppliers_info_db.inc");
-include_once($path_to_root . "/modules/additional_fields/includes/db/add_customers_info_db.inc");
 include_once($path_to_root . "/modules/additional_fields/includes/ui/additional_cust_info_ui.inc");
 include_once($path_to_root . "/purchasing/includes/db/suppliers_db.inc");
+include_once($path_to_root . "/modules/additional_fields/includes/addfields_db.inc");
 //END ADDED
 
 check_db_has_tax_groups(_("There are no tax groups defined in the system. At least one tax group is required before proceeding."));
@@ -204,10 +203,10 @@ function supplier_settings(&$supplier_id)
 		hidden('dimension2_id', 0);
 //ADDED
 	table_section_title(_("Additional Information"));
-	text_row(_("Supp. Custom Field One:"), 'supp_custom_one', null, 40, 255);
-	text_row(_("Supp. Custom Field Two:"), 'supp_custom_two', null, 40, 255);
-	text_row(_("Supp. Custom Field Three:"), 'supp_custom_three', null, 40, 255);
-	text_row(_("Supp. Custom Field Four:"), 'supp_custom_four', null, 40, 255);
+	text_row(get_supp_custom_labels_name(1), 'supp_custom_one', null, 40, 255);
+	text_row(get_supp_custom_labels_name(2), 'supp_custom_two', null, 40, 255);
+	text_row(get_supp_custom_labels_name(3), 'supp_custom_three', null, 40, 255);
+	text_row(get_supp_custom_labels_name(4), 'supp_custom_four', null, 40, 255);
 	sectors_list_row(_("Sector:"), 'supp_sector');
 //END ADDED		
 	if (!$supplier_id)	
