@@ -190,9 +190,12 @@ class additional_fields_app extends application {
         parent::__construct('AddFields', _($this->help_context = 'Additional Fields'));
         
         $this->add_module(_('Maintenance'));
+        $this->add_lapp_function(2, _('Customer Custom Field Labels'), $path_to_root.'/modules/additional_fields/manage/cust_customer_labels.php?', 'SA_SALESGROUP', MENU_MAINTENANCE);
+        $this->add_lapp_function(2, _('Supplier Custom Field Labels'), $path_to_root.'/modules/additional_fields/manage/cust_supplier_labels.php?', 'SA_SALESGROUP', MENU_MAINTENANCE);
+        $this->add_lapp_function(2, _('Item Custom Field Labels'), $path_to_root.'/modules/additional_fields/manage/cust_item_labels.php?', 'SA_SALESGROUP', MENU_MAINTENANCE);
         $this->add_lapp_function(2, _('Manage Document Types'), $path_to_root.'/modules/additional_fields/manage/document_types.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
         $this->add_lapp_function(2, _('Manage Beneficiary Classes'), $path_to_root.'/modules/additional_fields/manage/customer_class.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
-        $this->add_rapp_function(2, _('Manage Countries'), '/modules/additional_fields/manage/country.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_rapp_function(2, _('Manage Countries'),  $path_to_root.'/modules/additional_fields/manage/country.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
         $this->add_rapp_function(2, _('Manage Departments'), $path_to_root.'/modules/additional_fields/manage/department_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
         $this->add_rapp_function(2, _('Manage Cities'), $path_to_root.'/modules/additional_fields/manage/city_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
         $this->add_rapp_function(2, _('Manage Sectors'), $path_to_root.'/modules/additional_fields/manage/sectors_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
