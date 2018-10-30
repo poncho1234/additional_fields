@@ -13,7 +13,7 @@ $page_security = 'SA_SUPPLIER';
 $path_to_root = "../../..";
 include($path_to_root . "/includes/session.inc");
 
-include_once($path_to_root . "/modules/additional_fields/includes/db/add_customers_info_db.inc");
+include_once($path_to_root . "/modules/additional_fields/includes/addfields_db.inc");
 
 page(_($help_context = "Manage Cities"));
 
