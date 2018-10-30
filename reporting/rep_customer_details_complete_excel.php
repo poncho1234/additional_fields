@@ -23,8 +23,8 @@ include_once($path_to_root . "/includes/date_functions.inc");
 include_once($path_to_root . "/includes/data_checks.inc");
 include_once($path_to_root . "/gl/includes/gl_db.inc");
 //ADDED
-include_once($path_to_root . "/modules/additional_fields/includes/db/add_customers_info_db.inc");
 include_once($path_to_root . "/includes/db/crm_contacts_db.inc");
+include_once($path_to_root . "/modules/additional_fields/includes/addfields_db.inc");
 
 //END ADDED
 
@@ -109,6 +109,10 @@ function print_customer_details_listing()
 
 	$orientation = 'L';
     $dec = 0;
+    $cust_custom_label_one = get_cust_custom_labels_name(1);
+    $cust_custom_label_two = get_cust_custom_labels_name(2);
+    $cust_custom_label_three = get_cust_custom_labels_name(3);
+    $cust_custom_label_four = get_cust_custom_labels_name(4);
 
 	$cols = array(0, 120, 240, 340, 410, 480, 550, 690, 740, 790, 860, 930, 970, 1010, 1050, 1090, 1150, 1190, 1230, 1290, 1350, 1390, 1405, 1420, 1440, 1460, 1520, 1580, 1640, 1700);//max 1700
 			//    1  2	  3	   4	5	 6	  7	   8	9	 10	  11   12   13	 14	   15	 16	   17	 18	   19	 20	   21	 22	   23	 24	   25	 26    27    28    29    30
@@ -118,8 +122,7 @@ function print_customer_details_listing()
 			, _('Payment Terms'), _('Discount'), _('PYMT Discount'), _('Currency Code')
 			, _('Sales Area'), _('Salesman'), _('Sales Group'), _('Active?')
 			, _('Dimension 1'), _('Dimension 2'), _('Notes'), _('Phone')
-			, _('2nd Phone'), _('Fax'), _('E-mail'), _('Custom Field One')
-			, _('Custom Field Two'), _('Custom Field Three'), _('Custom Field Four'));
+			, _('2nd Phone'), _('Fax'), _('E-mail'), $cust_custom_label_one, $cust_custom_label_two, $cust_custom_label_three, $cust_custom_label_four);
 
 	$aligns = array('left', 'left', 'left', 'left', 'left', 'left', 'left', 
 					'left', 'left', 'left', 'left', 'left', 'left', 'left', 

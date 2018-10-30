@@ -23,6 +23,7 @@ include_once($path_to_root . "/includes/data_checks.inc");
 include_once($path_to_root . "/gl/includes/gl_db.inc");
 include_once($path_to_root . "/inventory/includes/inventory_db.inc");
 include_once($path_to_root . "/includes/db/manufacturing_db.inc");
+include_once($path_to_root . "/modules/additional_fields/includes/addfields_db.inc");
 
 //----------------------------------------------------------------------------------------------------
 
@@ -76,13 +77,16 @@ function print_stock_check()
 
 	$category = 0;
 	$cat = get_category_name($category);
+	$item_custom_label_one = get_item_custom_labels_name(1);
+    $item_custom_label_two = get_item_custom_labels_name(2);
+    $item_custom_label_three = get_item_custom_labels_name(3);
+    $item_custom_label_four = get_item_custom_labels_name(4);
 
 	$cols = array(0, 80, 220, 260, 300, 340, 440, 560, 680, 800, 860, 980, 1100, 1220, 1340);
 					//1	   2    3    4    5    6    7    8    9   10   11    12    13    14
 	$headers = array(_('Stock ID'), _('Description'), _('UOM'), _('Active?'),
 		 _('Bin number'), _('Primary supplier'), _('Primary suppliers Part number'), _('Alternative part number'), 
-		 _('Manufacturers part number'), _('Stocked Since'), _('Custom Field One'), _('Custom Field Two'), 
-		 _('Custom Field Three'), _('Custom Field Four'));
+		 _('Manufacturers part number'), _('Stocked Since'), $item_custom_label_one, $item_custom_label_two, $item_custom_label_three, $item_custom_label_four);
 	$aligns = array('left',	'left',	'left', 'left', 'left', 'left', 'left','left',	'left',	'left', 'left', 'left', 'left', 'left');
 
     $params =   array(
