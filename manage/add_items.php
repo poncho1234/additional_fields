@@ -42,7 +42,7 @@ include_once($path_to_root . "/inventory/includes/inventory_db.inc");
 include_once($path_to_root . "/fixed_assets/includes/fixed_assets_db.inc");
 //ADDED
 include_once($path_to_root . "/modules/additional_fields/includes/ui/additional_cust_info_ui.inc");
-include_once($path_to_root . "/modules/additional_fields/includes/db/add_items_info_db.inc");
+include_once($path_to_root . "/modules/additional_fields/includes/addfields_db.inc");
 //END ADDED
 
 $user_comp = user_company();
@@ -559,10 +559,10 @@ function item_settings(&$stock_id, $new_item)
 
 	table_section_title(_("Other"));
 // ADDED
-	text_row(_("Item. Custom Field One:"), 'item_custom_one', null, 40, 255);
-	text_row(_("Item. Custom Field Two:"), 'item_custom_two', null, 40, 255);
-	text_row(_("Item. Custom Field Three:"), 'item_custom_three', null, 40, 255);
-	text_row(_("Item. Custom Field Four:"), 'item_custom_four', null, 40, 255);
+	text_row(get_item_custom_labels_name(1), 'item_custom_one', null, 40, 255);
+	text_row(get_item_custom_labels_name(2), 'item_custom_two', null, 40, 255);
+	text_row(get_item_custom_labels_name(3), 'item_custom_three', null, 40, 255);
+	text_row(get_item_custom_labels_name(4), 'item_custom_four', null, 40, 255);
 	date_row(_("Stocked Since") . ":", 'item_start_date', '', false);
 //END ADDED
 	// Add image upload for New Item  - by Joe
