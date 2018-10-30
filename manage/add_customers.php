@@ -28,9 +28,9 @@ include_once($path_to_root . "/includes/banking.inc");
 include_once($path_to_root . "/includes/ui.inc");
 include_once($path_to_root . "/includes/ui/contacts_view.inc");
 //ADDED
-include_once($path_to_root . "/modules/additional_fields/includes/db/add_customers_info_db.inc");
 include_once($path_to_root . "/modules/additional_fields/includes/ui/additional_cust_info_ui.inc");
 include_once($path_to_root . "/sales/includes/db/customers_db.inc");
+include_once($path_to_root . "/modules/additional_fields/includes/addfields_db.inc");
 
 //END ADDED
 if (isset($_GET['debtor_no'])) 
@@ -368,10 +368,10 @@ function customer_settings($selected_id)
 	textarea_row(_("General Notes:"), 'notes', null, 35, 5);
 //ADDED
 	table_section_title(_("Additional Information"));
-	text_row(_("Cust. Custom Field One:"), 'cust_custom_one', null, 40, 255);
-	text_row(_("Cust. Custom Field Two:"), 'cust_custom_two', null, 40, 255);
-	text_row(_("Cust. Custom Field Three:"), 'cust_custom_three', null, 40, 255);
-	text_row(_("Cust. Custom Field Four:"), 'cust_custom_four', null, 40, 255);
+	text_row(get_cust_custom_labels_name(1), 'cust_custom_one', null, 40, 255);
+	text_row(get_cust_custom_labels_name(2), 'cust_custom_two', null, 40, 255);
+	text_row(get_cust_custom_labels_name(3), 'cust_custom_three', null, 40, 255);
+	text_row(get_cust_custom_labels_name(4), 'cust_custom_four', null, 40, 255);
 	sectors_list_row(_("Sector:"), 'cust_sector');
 //END ADDED
 	if (!$selected_id && isset($SysPrefs->auto_create_branch) && $SysPrefs->auto_create_branch == 1)
