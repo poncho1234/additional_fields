@@ -19,7 +19,6 @@ define('SS_ADDFLD',  142<<8); // transactions
 class add_fields_sales_app extends application {
     
     function __construct() {
-        global $path_to_root;
         
         parent::__construct('orders', _($this->help_context = '&Sales'));
         
@@ -92,7 +91,6 @@ class add_fields_sales_app extends application {
 class add_fields_supp_app extends application {
 	
     function __construct() {
-        global $path_to_root;
         
         parent::__construct('AP', _($this->help_context = '&Purchases'));
         
@@ -185,20 +183,20 @@ class add_fields_item_app extends application {
 class additional_fields_app extends application {
     
     function __construct() {
-        global $path_to_root;
         
         parent::__construct('AddFields', _($this->help_context = 'Additional Fields'));
-        
+        $this->add_module(_("Transactions"));
+        $this->add_module(_("Inquiries and Reports"));
         $this->add_module(_('Maintenance'));
-        $this->add_lapp_function(2, _('Customer Custom Field Labels'), $path_to_root.'/modules/additional_fields/manage/cust_customer_labels.php?', 'SA_SALESGROUP', MENU_MAINTENANCE);
-        $this->add_lapp_function(2, _('Supplier Custom Field Labels'), $path_to_root.'/modules/additional_fields/manage/cust_supplier_labels.php?', 'SA_SALESGROUP', MENU_MAINTENANCE);
-        $this->add_lapp_function(2, _('Item Custom Field Labels'), $path_to_root.'/modules/additional_fields/manage/cust_item_labels.php?', 'SA_SALESGROUP', MENU_MAINTENANCE);
-        $this->add_lapp_function(2, _('Manage Document Types'), $path_to_root.'/modules/additional_fields/manage/document_types.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
-        $this->add_lapp_function(2, _('Manage Beneficiary Classes'), $path_to_root.'/modules/additional_fields/manage/customer_class.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
-        $this->add_rapp_function(2, _('Manage Countries'),  $path_to_root.'/modules/additional_fields/manage/country.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
-        $this->add_rapp_function(2, _('Manage Departments'), $path_to_root.'/modules/additional_fields/manage/department_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
-        $this->add_rapp_function(2, _('Manage Cities'), $path_to_root.'/modules/additional_fields/manage/city_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
-        $this->add_rapp_function(2, _('Manage Sectors'), $path_to_root.'/modules/additional_fields/manage/sectors_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_lapp_function(2, _('Customer Custom Field Labels'), '/modules/additional_fields/manage/cust_customer_labels.php?', 'SA_SALESGROUP', MENU_MAINTENANCE);
+        $this->add_lapp_function(2, _('Supplier Custom Field Labels'), '/modules/additional_fields/manage/cust_supplier_labels.php?', 'SA_SALESGROUP', MENU_MAINTENANCE);
+        $this->add_lapp_function(2, _('Item Custom Field Labels'), '/modules/additional_fields/manage/cust_item_labels.php?', 'SA_SALESGROUP', MENU_MAINTENANCE);
+        $this->add_lapp_function(2, _('Manage Document Types'), '/modules/additional_fields/manage/document_types.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_lapp_function(2, _('Manage Beneficiary Classes'), '/modules/additional_fields/manage/customer_class.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_rapp_function(2, _('Manage Countries'),  '/modules/additional_fields/manage/country.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_rapp_function(2, _('Manage Departments'), '/modules/additional_fields/manage/department_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_rapp_function(2, _('Manage Cities'), '/modules/additional_fields/manage/city_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
+        $this->add_rapp_function(2, _('Manage Sectors'), '/modules/additional_fields/manage/sectors_add_info.php?', 'SA_SUPPLIER', MENU_MAINTENANCE);
         $this->add_extensions();
     }
 }
