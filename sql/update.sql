@@ -2047,3 +2047,54 @@ INSERT INTO `0_addfields_sectors` VALUES
 ('496', '9810 Actividades no diferenciadas de los hogares individuales como productores de bienes para uso propio', '9810', '1'),
 ('497', '9820 Actividades no diferenciadas de los hogares individuales como productores de servicios para uso propio', '9820', '1'),
 ('498', '9900 Actividades de organizaciones y entidades extraterritoriales', '9900', '1');
+
+DROP TABLE IF EXISTS `0_addfields_cust_custom_labels`;
+
+CREATE TABLE `0_addfields_cust_custom_labels` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `description` (`description`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
+
+### Data of table `0_addfields_cust_custom_labels` ###
+
+INSERT INTO `0_addfields_cust_custom_labels` VALUES
+('1', 'Custom Customer Label One'),
+('2', 'Custom Customer Label Two'),
+('3', 'Custom Customer Label Three'),
+('4', 'Custom Customer Label Four');
+
+DROP TABLE IF EXISTS `0_addfields_item_custom_labels`;
+
+CREATE TABLE `0_addfields_item_custom_labels` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `description` (`description`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
+
+### Data of table `0_addfields_item_custom_labels` ###
+
+INSERT INTO `0_addfields_item_custom_labels` VALUES
+('1', 'Custom Item Label One'),
+('2', 'Custom Item Label Two'),
+('3', 'Custom Item Label Three'),
+('4', 'Custom Item Label Four');
+
+DROP TABLE IF EXISTS `0_addfields_supp_custom_labels`;
+
+CREATE TABLE `0_addfields_supp_custom_labels` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `description` (`description`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
+
+### Data of table `0_addfields_supp_custom_labels` ###
+
+INSERT INTO `0_addfields_supp_custom_labels` VALUES
+('1', 'Custom Supplier Label One'),
+('2', 'Custom Supplier Label Two'),
+('3', 'Custom Supplier Label Three'),
+('4', 'Custom Supplier Label Four');
