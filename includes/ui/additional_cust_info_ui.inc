@@ -181,29 +181,27 @@ function sectors_list_row($label, $name, $selected_id=null, $submit_on_change=fa
 	echo "</tr>\n";
 }
 
-
-
 //-----------------------------------------------------------------------------------------------
 // Not used when CIS is integrated
-// function readonly_textarea_cells($label, $name, $value, $cols, $rows, $title = null, $params="")
-// {
-//   	global $Ajax;
+function readonly_textarea_cells($label, $name, $value, $cols, $rows, $title = null, $params="")
+{
+  	global $Ajax;
 
-// 	default_focus($name);
-// 	if ($label != null)
-// 		echo "<td $params>$label</td>\n";
-// 	if ($value == null)
-// 		$value = (!isset($_POST[$name]) ? "" : $_POST[$name]);
-// 	echo "<td><textarea name='$name' cols='$cols' rows='$rows' readonly"
-// 	.($title ? " title='$title'" : '')
-// 	.">$value</textarea></td>\n";
-// 	$Ajax->addUpdate($name, $name, $value);
-// }
+	default_focus($name);
+	if ($label != null)
+		echo "<td $params>$label</td>\n";
+	if ($value == null)
+		$value = (!isset($_POST[$name]) ? "" : $_POST[$name]);
+	echo "<td><textarea name='$name' cols='$cols' rows='$rows' readonly"
+	.($title ? " title='$title'" : '')
+	.">$value</textarea></td>\n";
+	$Ajax->addUpdate($name, $name, $value);
+}
 
-// function readonly_textarea_row($label, $name, $value, $cols, $rows, $title=null, $params="")
-// {
-// 	echo "<tr><td class='label'>$label</td>";
-// 	readonly_textarea_cells(null, $name, $value, $cols, $rows, $title, $params);
-// 	echo "</tr>\n";
-// }
+function readonly_textarea_row($label, $name, $value, $cols, $rows, $title=null, $params="")
+{
+	echo "<tr><td class='label'>$label</td>";
+	readonly_textarea_cells(null, $name, $value, $cols, $rows, $title, $params);
+	echo "</tr>\n";
+}
 //-----------------------------------------------------------------------------------
