@@ -55,7 +55,7 @@ function add_item_additional_info($item_stock_id, $item_bin_num, $item_prime_sup
 
 function delete_item_additional_info($stock_id)
 {
-	$sql="DELETE FROM ".TB_PREF."addfields_item WHERE stock_id=".db_escape($stock_id);
+	$sql="DELETE FROM ".TB_PREF."addfields_item WHERE item_stock_id=".db_escape($stock_id);
 	db_query($sql, "could not delete stock item additonal info");
 }
 
@@ -79,3 +79,22 @@ function get_item_bin_no($stock_id)
 }
 
 
+function get_gl_account_name_orundefined($code)
+	{
+		if ($code == 0)
+			return 'Use Item Inventory/COGS Account';
+		else 
+		{
+		$sql = "SELECT account_name from ".TB_PREF."chart_master WHERE account_code=".db_escape($code);
+
+		$result = db_query($sql);
+
+			if (db_num_rows($result) == 1)
+			{
+				$row = db_fetch_row($result);
+				return $row[0];
+			}
+
+		}
+
+	}
