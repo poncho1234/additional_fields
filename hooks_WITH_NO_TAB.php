@@ -18,56 +18,10 @@ define ('SS_ADDFLD_C', 141<<8);
 define ('SS_ADDFLD', 142<<8);
 define ('SS_ADDFLD_A', 143<<8);
 
-class additional_fields_app extends application {
-	
-	function __construct() {
-		
-		parent::__construct('AddFields', _($this->help_context = 'Additional Fields'));
-
-		$this->add_module(_("Customer Additional Information"));
-		$this->add_lapp_function(0, _("Additional &Customer Information"),
-			"/modules/additional_fields/manage/add_customers.php?", 'SA_CUSTOMER', MENU_ENTRY);
-		$this->add_rapp_function(0, _('Customer Custom Field Labels'),
-			'/modules/additional_fields/manage/cust_customer_labels.php?', 'SA_ADD_FIELDS_CUST_LABELS', MENU_MAINTENANCE);
-
-		$this->add_module(_("Supplier Additional Information"));
-		$this->add_lapp_function(1, _("Additional &Supplier Information"),
-			"/modules/additional_fields/manage/add_suppliers.php?", 'SA_SUPPLIER', MENU_ENTRY);
-		$this->add_rapp_function(1, _('Supplier Custom Field Labels'),
-			'/modules/additional_fields/manage/cust_supplier_labels.php?', 'SA_ADD_FIELDS_SUPP_LABELS', MENU_MAINTENANCE);
-
-		$this->add_module(_("Item Additional Information"));
-		$this->add_lapp_function(2, _("Additional &Item Information"),
-			"/modules/additional_fields/manage/add_items.php?", 'SA_ITEM', MENU_ENTRY);
-		$this->add_rapp_function(2, _('Item Custom Field Labels'),
-			'/modules/additional_fields/manage/cust_item_labels.php?', 'SA_ADD_FIELDS_ITEM_LABELS', MENU_MAINTENANCE);
-
-		$this->add_module(_('Maintenance'));
-		$this->add_lapp_function(3, _('Manage Document Types'),
-			'/modules/additional_fields/manage/document_types.php?', 'SA_ADD_FIELDS_DOC_TYPES', MENU_MAINTENANCE);
-		$this->add_lapp_function(3, _('Manage Beneficiary Classes'),
-			'/modules/additional_fields/manage/customer_class.php?', 'SA_ADD_FIELDS_BEN_CLASSES', MENU_MAINTENANCE);
-		$this->add_lapp_function(3, _('Manage Sectors'),
-			'/modules/additional_fields/manage/sectors_add_info.php?', 'SA_ADD_FIELDS_SECTOR', MENU_MAINTENANCE);
-		$this->add_rapp_function(3, _('Manage Countries'),
-			'/modules/additional_fields/manage/country.php?', 'SA_ADD_FIELDS_COUNTRY', MENU_MAINTENANCE);
-		$this->add_rapp_function(3, _('Manage Departments'),
-			'/modules/additional_fields/manage/department_add_info.php?', 'SA_ADD_FIELDS_DEPARTMENT', MENU_MAINTENANCE);
-		$this->add_rapp_function(3, _('Manage Cities'),
-			'/modules/additional_fields/manage/city_add_info.php?', 'SA_ADD_FIELDS_CITY', MENU_MAINTENANCE);
-		$this->add_extensions();
-	}
-	
-}
-
 class hooks_additional_fields extends hooks {
 
 	function __construct() {
 		$this->module_name = 'additional_fields';
-	}
-	
-	function install_tabs($app) {
-		$app->add_application(new additional_fields_app);
 	}
 	
 	function install_access() {
@@ -85,6 +39,47 @@ class hooks_additional_fields extends hooks {
 		$security_areas['SA_ADD_FIELDS_CUST_LABELS'] = array(SS_ADDFLD_C|109, _("AddFields Customer Custom Field Labels"));
 		return array($security_areas, $security_sections);
 	}
+
+	function install_options($app) {
+		global $path_to_root;
+		switch($app->id) {
+			case 'orders':
+				$app->add_lapp_function(2, _("Additional &Customer Information"), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/add_customers.php?', 'SA_CUSTOMER', MENU_ENTRY);
+				$app->add_rapp_function(2, _("Customer Custom Field Labels"), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/cust_customer_labels.php?', 'SA_ADD_FIELDS_CUST_LABELS', MENU_MAINTENANCE);
+				break;
+			case 'AP':
+				$app->add_lapp_function(2, _("Additional &Supplier Information"), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/add_suppliers.php?', 'SA_CUSTOMER', MENU_ENTRY);
+				$app->add_rapp_function(2, _("Supplier Custom Field Labels"), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/cust_supplier_labels.php?', 'SA_ADD_FIELDS_SUPP_LABELS', MENU_MAINTENANCE);
+				break;
+			case 'stock':
+				$app->add_lapp_function(2, _("Additional &Item Information"), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/add_items.php?', 'SA_CUSTOMER', MENU_ENTRY);
+				$app->add_rapp_function(2, _("Item Custom Field Labels"), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/cust_item_labels.php?', 'SA_ADD_FIELDS_ITEM_LABELS', MENU_MAINTENANCE);
+				break;
+			case 'system':
+				$app->add_lapp_function(1, _('Manage Document Types'), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/document_types.php?', 'SA_ADD_FIELDS_DOC_TYPES', MENU_MAINTENANCE);
+				$app->add_lapp_function(1, _('Manage Beneficiary Classes'), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/customer_class.php?', 'SA_ADD_FIELDS_BEN_CLASSES', MENU_MAINTENANCE);
+				$app->add_lapp_function(1, _('Manage Sectors'), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/sectors_add_info.php?', 'SA_ADD_FIELDS_SECTOR', MENU_MAINTENANCE);
+
+				$app->add_rapp_function(1, _('Manage Countries'), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/country.php?', 'SA_ADD_FIELDS_COUNTRY', MENU_MAINTENANCE);
+				$app->add_rapp_function(1, _('Manage Departments'), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/department_add_info.php?', 'SA_ADD_FIELDS_DEPARTMENT', MENU_MAINTENANCE);
+				$app->add_rapp_function(1, _('Manage Cities'), 
+					$path_to_root.'/modules/'.$this->module_name.'/manage/city_add_info.php?', 'SA_ADD_FIELDS_CITY', MENU_MAINTENANCE);
+				break;
+		}
+	}
+
+	
 
 	function activate_extension($company, $check_only=true) {
 		global $db_connections;
