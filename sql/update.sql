@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `0_addfields_cust` (
     `cust_department` varchar(30) DEFAULT NULL,
     `cust_country` varchar(30) DEFAULT NULL,
     `cust_postcode` varchar(15) DEFAULT NULL,
-    `cust_doc_type` int(11) DEFAULT NULL,
+    `cust_doc_type` varchar(11) DEFAULT NULL,
     `cust_valid_digit` varchar(2) DEFAULT NULL,
     `cust_start_date` date NOT NULL,
     `cust_sector` varchar(30) DEFAULT NULL,
